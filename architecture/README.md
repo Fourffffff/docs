@@ -80,16 +80,34 @@ flowchart TB
 
 ### 2. 服务端技术栈
 
-#### 2.1 Spring Boot
+#### 2.1 Fastapi：
 
-- **成熟生态**：
-  - Spring Boot 是 Java 生态中最流行的框架，拥有丰富的文档和社区支持。
-  - 提供开箱即用的功能（如 Spring Security、Spring Data JPA），加速开发。
-- **高性能**：
-  - 基于 Java 的高性能特性，适合高并发场景。
-  - 支持异步处理（如 `@Async` 注解），提升系统吞吐量。
-- **易于扩展**：
-  - 模块化设计，方便集成第三方服务（如 Redis、MySQL、消息队列等）。
+##### 原因：
+
+一、速度快
+FastAPI 是基于 Starlette 和 Pydantic 构建的，天然支持异步（async/await）。
+单接口性能接近 Node.js 和 Go，远超传统的 Flask、Django。
+二、开发效率高
+支持自动生成 OpenAPI（Swagger）文档，不用手写接口文档。
+请求参数、响应结果都有自动校验，只需简单定义 Pydantic 模型。
+几乎写完接口代码，文档、校验、序列化都自动做好了。
+三、学习曲线平滑
+语法风格清晰，基本接近 Flask。
+如果用过 Flask/Django，很快可以上手。
+兼容传统同步代码，也支持异步调用，过渡非常友好。
+四、生态现代
+内置支持 CORS、OAuth2、JWT认证等功能。
+能很好地和 SQLAlchemy、Tortoise ORM、Pydantic 等库结合。
+与前端（比如uniapp、React、Vue）联调非常舒服，接口标准化好。
+
+##### 主要使用到的库：
+
+- FastAPI：核心框架，用来定义路由和处理HTTP请求。
+- SQLAlchemy：ORM框架，操作数据库用的，直接用Python对象管理数据。
+- Pydantic：用来做数据模型和请求数据校验。
+- Uvicorn：作为ASGI服务器启动FastAPI项目。
+- Alembic（可选）：数据库迁移工具，方便后期管理数据表结构变更（目前开发阶段用得少）。
+- Pytest：后端接口测试用的框架
 
 #### 2.2 MySQL
 
