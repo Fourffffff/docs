@@ -30,12 +30,11 @@ mindmap
 				javascript
 				Dcloud
 			后端
-				Java
-				Springboot3
+				Python
+				Fastapi
 				MySQL
-				Maven
-				mybatis
-				JWT
+				Redis
+				ORM
 		功能模块
 			帖子管理
 				发布帖子
@@ -49,16 +48,11 @@ mindmap
 				统计分数
 				进行排名
 				添加评论
-			课程管理
-				导入课程
-				课程查看
-				作业标记
-			招聘管理
-				发布工作
-				接受工作
+			
 		测试方案
 			后端测试
 				Postman
+				Pytest
 			集成测试
 				selenium
 		第三方服务
