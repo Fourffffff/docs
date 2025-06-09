@@ -2,7 +2,7 @@
 
 ## 项目介绍
 
-本项目是一个学生校园生活社交软件。前端使用uniapp+javascript+scss+vue.js,后端使用java+springboot，数据库使用MySQL+Navicat。主要功能有：
+本项目是一个学生校园生活社交软件。前端使用uniapp+javascript+scss+vue.js,后端使用python+FastAPI，数据库使用MySQL+Navicat。主要功能有：
 
 - 发布具有标题，文字内容，配图的帖子，进行校园生活分享或者二手物品买卖。
 - 对帖子进行点赞，评论收藏。
