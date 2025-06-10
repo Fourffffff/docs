@@ -1,0 +1,1826 @@
+openapi: 3.0.1
+info:
+  title: 个人项目
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /api/user/login:
+    post:
+      summary: 用户登录
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  example: ''
+                  type: string
+                password:
+                  description: 密码（未加密）
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  token:
+                    type: string
+                  expiresIn:
+                    description: Token 过期时间（秒）
+                    type: string
+                required:
+                  - userId
+                  - username
+                  - email
+                  - token
+                  - expiresIn
+          headers: {}
+      security: []
+  /api/user/register:
+    post:
+      summary: 用户注册
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  example: ''
+                  type: string
+                password:
+                  example: ''
+                  type: string
+                email:
+                  example: ''
+                  type: string
+                avatar:
+                  description: 头像 URL（可选）
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  createdAt:
+                    type: string
+                required:
+                  - userId
+                  - username
+                  - email
+                  - createdAt
+              example:
+                userId: int
+                username: string
+                email: string
+                createdAt: string
+          headers: {}
+      security: []
+  /api/user/{userId}:
+    get:
+      summary: 用户信息获取
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  avatar:
+                    type: string
+                  bio:
+                    type: string
+                  createdAt:
+                    type: string
+                required:
+                  - userId
+                  - username
+                  - email
+                  - avatar
+                  - bio
+                  - createdAt
+              example:
+                userId: int
+                username: string
+                email: string
+                avatar: string
+                bio: string
+                createdAt: string
+          headers: {}
+      security: []
+    put:
+      summary: '用户信息更新 '
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  example: ''
+                  type: string
+                email:
+                  example: ''
+                  type: string
+                avatar:
+                  example: ''
+                  type: string
+                bio:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/user/{userId}/collect:
+    post:
+      summary: 添加收藏
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                postId:
+                  type: integer
+                  example: 0
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  postId:
+                    type: string
+                required:
+                  - postId
+              example:
+                postId: int
+          headers: {}
+      security: []
+    get:
+      summary: 获取收藏列表
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        collectId:
+                          type: string
+                        postId:
+                          type: string
+                        title:
+                          type: string
+                        category:
+                          type: string
+                        createdAt:
+                          type: string
+                required:
+                  - collections
+              example:
+                collections:
+                  - collectId: int
+                    postId: int
+                    title: string
+                    category: string
+                    createdAt: string
+          headers: {}
+      security: []
+  /api/user/{userId}/collect/{postId}:
+    delete:
+      summary: 取消收藏
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/user/{userId}/posts:
+    get:
+      summary: 获取用户发布的动态
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        postId:
+                          type: string
+                        title:
+                          type: string
+                        content:
+                          type: string
+                        images:
+                          type: array
+                          items:
+                            type: string
+                        likes:
+                          type: string
+                        comments:
+                          type: string
+                        createdAt:
+                          type: string
+                required:
+                  - posts
+              example:
+                posts:
+                  - postId: int
+                    title: string
+                    content: string
+                    images:
+                      - string
+                    likes: int
+                    comments: int
+                    createdAt: string
+          headers: {}
+      security: []
+  /api/post:
+    put:
+      summary: 发布动态
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  example: ''
+                  type: string
+                title:
+                  example: ''
+                  type: string
+                content:
+                  example: ''
+                  type: string
+                images:
+                  description: 图片 URL 列表
+                  example: ''
+                  type: string
+                category:
+                  description: 分类
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  postId:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - postId
+                  - message
+              example:
+                postId: int
+                message: string
+          headers: {}
+      security: []
+    get:
+      summary: '获取动态列表（参数不清楚该怎么写） '
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: category
+          in: query
+          description: 筛选分类
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: 每页数量
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        postId:
+                          type: string
+                        userId:
+                          type: string
+                        username:
+                          type: string
+                        title:
+                          type: string
+                        content:
+                          type: string
+                        images:
+                          type: array
+                          items:
+                            type: string
+                        likes:
+                          type: string
+                        comments:
+                          type: string
+                        createdAt:
+                          type: string
+                  total:
+                    type: string
+                required:
+                  - posts
+                  - total
+              example:
+                posts:
+                  - postId: int
+                    userId: int
+                    username: string
+                    title: string
+                    content: string
+                    images:
+                      - string
+                    likes: int
+                    comments: int
+                    createdAt: string
+                total: int
+          headers: {}
+      security: []
+  /api/post/{postId}:
+    get:
+      summary: 获取动态详情
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  postId:
+                    type: string
+                  userId:
+                    type: string
+                  username:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  images:
+                    type: array
+                    items:
+                      type: string
+                  likes:
+                    type: string
+                  comments:
+                    type: string
+                  createdAt:
+                    type: string
+                required:
+                  - postId
+                  - userId
+                  - username
+                  - title
+                  - content
+                  - images
+                  - likes
+                  - comments
+                  - createdAt
+              example:
+                postId: int
+                userId: int
+                username: string
+                title: string
+                content: string
+                images:
+                  - string
+                likes: int
+                comments: int
+                createdAt: string
+          headers: {}
+      security: []
+    delete:
+      summary: 删除动态
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/post/{postId}/like:
+    post:
+      summary: 点赞动态
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  example: 0
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  likes:
+                    description: 点赞总数
+                    type: string
+                required:
+                  - message
+                  - likes
+              example:
+                message: string
+                likes: int
+          headers: {}
+      security: []
+    delete:
+      summary: 取消点赞动态
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  likes:
+                    type: string
+                required:
+                  - message
+                  - likes
+              example:
+                message: string
+                likes: int
+          headers: {}
+      security: []
+  /api/post/{postId}/collect:
+    post:
+      summary: 收藏动态
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  example: 0
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+    delete:
+      summary: 取消收藏动态
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/post/{postId}/comment:
+    post:
+      summary: 发表评论
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  example: 0
+                content:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commentId:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - commentId
+                  - message
+              example:
+                commentId: int
+                message: string
+          headers: {}
+      security: []
+  /api/post/{postId}/comments:
+    get:
+      summary: 获取动态评论
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: postId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        commentId:
+                          type: string
+                        userId:
+                          type: string
+                        username:
+                          type: string
+                        content:
+                          type: string
+                        createdAt:
+                          type: string
+                required:
+                  - comments
+              example:
+                comments:
+                  - commentId: int
+                    userId: int
+                    username: string
+                    content: string
+                    createdAt: string
+          headers: {}
+      security: []
+  /api/comment/{commentId}:
+    delete:
+      summary: 删除评论
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: commentId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/review:
+    post:
+      summary: 发布评分和评价
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  example: 0
+                target:
+                  description: 评价对象
+                  example: ''
+                  type: string
+                targetId:
+                  type: integer
+                  description: 对应对象 ID
+                  example: 0
+                rating:
+                  type: string
+                  example: ''
+                comment:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reviewId:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - reviewId
+                  - message
+              example:
+                reviewId: int
+                message: string
+          headers: {}
+      security: []
+    get:
+      summary: 获取评分和评价列表
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: target
+          in: query
+          description: 评价类型
+          required: false
+          schema:
+            type: string
+        - name: targetId
+          in: query
+          description: 具体对象 ID
+          required: false
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: 页码
+          required: false
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reviews:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        reviewId:
+                          type: string
+                        userId:
+                          type: string
+                        username:
+                          type: string
+                        category:
+                          type: string
+                        targetId:
+                          type: string
+                        rating:
+                          type: string
+                        content:
+                          type: string
+                        createdAt:
+                          type: string
+                  total:
+                    type: string
+                required:
+                  - reviews
+                  - total
+              example:
+                reviews:
+                  - reviewId: int
+                    userId: int
+                    username: string
+                    category: string
+                    targetId: int
+                    rating: float
+                    content: string
+                    createdAt: string
+                total: int
+          headers: {}
+      security: []
+  /api/review/{reviewId}:
+    get:
+      summary: 获取单个对象评分详情
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: reviewId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reviewId:
+                    type: string
+                  userId:
+                    type: string
+                  username:
+                    type: string
+                  category:
+                    type: string
+                  targetId:
+                    type: string
+                  rating:
+                    type: string
+                  content:
+                    type: string
+                  createdAt:
+                    type: string
+                required:
+                  - reviewId
+                  - userId
+                  - username
+                  - category
+                  - targetId
+                  - rating
+                  - content
+                  - createdAt
+              example:
+                reviewId: int
+                userId: int
+                username: string
+                category: string
+                targetId: int
+                rating: float
+                content: string
+                createdAt: string
+          headers: {}
+      security: []
+    delete:
+      summary: 删除评价
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: reviewId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/timetable/import:
+    post:
+      summary: 导入课程表
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  example: 0
+                courseName:
+                  example: ''
+                  type: string
+                courseTime:
+                  example: ''
+                  type: string
+                teacher:
+                  example: ''
+                  type: string
+                dayOfWeek:
+                  type: integer
+                  description: ' 1=周一, 2=周二...'
+                  example: 0
+                time:
+                  description: '"08:00-09:30"'
+                  example: ''
+                  type: string
+                location:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/timetable/{userId}:
+    get:
+      summary: 获取课程表
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  courses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        courseId:
+                          type: string
+                        courseName:
+                          type: string
+                        courseCode:
+                          type: string
+                        teacher:
+                          type: string
+                        dayOfWeek:
+                          type: string
+                        time:
+                          type: string
+                        location:
+                          type: string
+                required:
+                  - courses
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/timetable/{courseId}:
+    put:
+      summary: 更新课程信息
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: courseId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                courseName:
+                  example: ''
+                  type: string
+                courseCode:
+                  example: ''
+                  type: string
+                teacher:
+                  example: ''
+                  type: string
+                dayOfWeek:
+                  type: integer
+                  example: 0
+                time:
+                  example: ''
+                  type: string
+                location:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+    delete:
+      summary: 删除课程
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: courseId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/job:
+    post:
+      summary: 发布兼职招聘
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  example: 0
+                title:
+                  example: ''
+                  type: string
+                description:
+                  example: ''
+                  type: string
+                salary:
+                  example: ''
+                  type: string
+                location:
+                  example: ''
+                  type: string
+                contact:
+                  example: ''
+                  type: string
+                workTime:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - jobId
+                  - message
+              example:
+                jobId: int
+                message: string
+          headers: {}
+      security: []
+    get:
+      summary: 获取兼职招聘列表
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: page
+          in: query
+          description: ''
+          required: false
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        jobId:
+                          type: string
+                        userId:
+                          type: string
+                        title:
+                          type: string
+                        salary:
+                          type: string
+                        location:
+                          type: string
+                        workTime:
+                          type: string
+                        createdAt:
+                          type: string
+                  total:
+                    type: string
+                required:
+                  - jobs
+                  - total
+              example:
+                jobs:
+                  - jobId: int
+                    userId: int
+                    title: string
+                    salary: string
+                    location: string
+                    workTime: string
+                    createdAt: string
+                total: int
+          headers: {}
+      security: []
+  /api/job/{jobId}:
+    get:
+      summary: 获取兼职招聘详情
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: jobId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                  userId:
+                    type: string
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  salary:
+                    type: string
+                  location:
+                    type: string
+                  contact:
+                    type: string
+                  workTime:
+                    type: string
+                  createdAt:
+                    type: string
+                required:
+                  - jobId
+                  - userId
+                  - title
+                  - description
+                  - salary
+                  - location
+                  - contact
+                  - workTime
+                  - createdAt
+              example:
+                jobId: int
+                userId: int
+                title: string
+                description: string
+                salary: string
+                location: string
+                contact: string
+                workTime: string
+                createdAt: string
+          headers: {}
+      security: []
+    delete:
+      summary: 删除兼职招聘
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: jobId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/job/{jobId}/apply:
+    post:
+      summary: 应聘兼职
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: jobId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  example: 0
+                contactInfo:
+                  example: ''
+                  type: string
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              example:
+                message: string
+          headers: {}
+      security: []
+  /api/job/{jobId}/applications:
+    get:
+      summary: 获取兼职申请列表
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: jobId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  applications:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        userId:
+                          type: string
+                        username:
+                          type: string
+                        contactInfo:
+                          type: string
+                        appliedAt:
+                          type: string
+                required:
+                  - applications
+              example:
+                applications:
+                  - userId: int
+                    username: string
+                    contactInfo: string
+                    appliedAt: string
+          headers: {}
+      security: []
+  /api/feed:
+    get:
+      summary: 获取动态（首页）
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: page
+          in: query
+          description: ''
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  feed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        data:
+                          type: object
+                          properties: {}
+                  total:
+                    type: string
+                required:
+                  - feed
+                  - total
+              example:
+                feed:
+                  - type: string
+                    data: {}
+                total: int
+          headers: {}
+      security: []
+  /api/search:
+    get:
+      summary: 搜索帖子/用户/招聘信息
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: query
+          in: query
+          description: ''
+          required: false
+          example: xxx
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: string
+                    description: 帖子结果
+                  users:
+                    type: array
+                    items:
+                      type: string
+                    description: 用户结果
+                  jobs:
+                    type: array
+                    items:
+                      type: string
+                    description: 兼职结果
+                required:
+                  - posts
+                  - users
+                  - jobs
+              example:
+                posts: []
+                users: []
+                jobs: []
+          headers: {}
+      security: []
+components:
+  schemas:
+    Pet:
+      required:
+        - name
+        - photoUrls
+        - id
+        - category
+        - tags
+        - status
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+          description: 宠物ID编号
+        category:
+          $ref: '#/components/schemas/Category'
+          description: 分组
+        name:
+          type: string
+          description: 名称
+          examples:
+            - doggie
+        photoUrls:
+          type: array
+          items:
+            type: string
+          description: 照片URL
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          description: 标签
+        status:
+          type: string
+          description: 宠物销售状态
+          enum:
+            - available
+            - pending
+            - sold
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+          description: 分组ID编号
+        name:
+          type: string
+          description: 分组名称
+      xml:
+        name: Category
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+          description: 标签ID编号
+        name:
+          type: string
+          description: 标签名称
+      xml:
+        name: Tag
+  securitySchemes: {}
+servers:
+  - url: http://localhost:8080
+    description: 测试环境
+security: []

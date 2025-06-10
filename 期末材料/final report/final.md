@@ -1425,7 +1425,7 @@ GET /api/review/{reviewId}
 
 
 
-![[ER.png]]
+![image](./ER.png)
 系统的核心数据表包括：
 
 - **账户表 (`account`)**：存储用户信息。
@@ -1867,7 +1867,7 @@ graph TB
 
 ## 14.1 系统演示
 
-![[4月27日.mp4]]
+(详情见"docs/videos/期末演示.mp4")
 
 ## 14.2 用户体验测试
 
@@ -2005,8 +2005,6 @@ graph TB
 - API文档: docs/api/目录
 - 原型设计文件: docs/design/目录
 - 项目演示视频: docs/videos/目录
-- 用户手册: docs/user_manual.md
-- 部署文档: docs/deployment.md
 - 测试报告: docs/test_report.md
 
 ## 16.2 知识产权与开源
@@ -2038,15 +2036,11 @@ graph TB
 
 系统所参考的文献、技术文档、开源项目等，按照学术规范格式编写：
 
-[1] 微信小程序开发文档. https://developers.weixin.qq.com/miniprogram/dev/framework/
+[1] uniapp开发文档.https://zh.uniapp.dcloud.io/
 
-[2] Flask Web开发框架. https://flask.palletsprojects.com/
+[2] FastAPI开发框架.https://fastapi.tiangolo.com/zh/
 
-[3] React Native官方文档. https://reactnative.dev/
 
-[4] 移动应用开发最佳实践. 人民邮电出版社, 2023.
-
-[5] 云原生应用架构指南. 机械工业出版社, 2022.
 
 ---
 
