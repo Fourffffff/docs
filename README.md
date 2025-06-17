@@ -9,6 +9,7 @@
 - 发布对于老师，课程，食堂等校园模块的评分和评价留言。
 - 导入课程表，对课程信息进行查询。
 - 进行兼职工作的招聘。
+
 项目的主要仓库地址为：
 前端：https://github.com/Fourffffff/python_backend.git
 后端：https://github.com/Fourffffff/MyShangxiao_frontend.git
